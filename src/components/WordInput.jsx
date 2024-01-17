@@ -7,6 +7,11 @@ function WordInput({ onSubmit }) {
     setNewWord(value.target.value);
   };
 
+  const handleSubmit = () => {
+    onSubmit(newWord);
+    setNewWord('');
+  }
+  
 
   return (
     <>
@@ -21,7 +26,7 @@ function WordInput({ onSubmit }) {
         />
         {newWord.length < 5 && newWord.length > 0 && <p>Text should be 5 letters</p>}
       </div>
-      <button onClick={() => onSubmit(newWord)}>Submit</button>
+      <button onClick={handleSubmit}>Submit</button>
     </>
   );
 }

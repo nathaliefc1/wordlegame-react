@@ -5,21 +5,39 @@ import Result from "./components/Result";
 import WordInput from "./components/WordInput";
 
 function App() {
-  const [newWordInput, setNewWordInput] = useState("");
+  const [newInputWord, setNewInputWord] = useState("");
   const [valueData, setValueData] = useState("");
   const [finalResult, setFinalResult] = useState(false);
 
   const handleData = (data) => {
-    console.log("LaData ===", data);
+    console.log("ApiWord ===", data);
     setValueData(data);
   };
+
   const handleSubmit = (newWord) => {
-    console.log("here ===", newWord);
-    setNewWordInput(newWord);
-    newWordInput === valueData ?
-      console.log("es igual - Congratulations") &&
-      setFinalResult(true): setFinalResult(false)
+    console.log("MyNewWord ===", newWord);
+    if (newWord === valueData) {
+      setFinalResult(true);
+    } else {
+      setFinalResult(false);
+    }
+    setNewInputWord(newWord);
   };
+
+  const validateWord = (newInputWord, valueData) => {
+    let checkLetter = [];
+    let letter = undefined;
+    let isInWord = undefined;
+    let isInSamePosition = undefined;
+    for (let i = 0; i < newInputWord.length; i++) {
+    letter = newInputWord[i];
+    isInWord = valueData.includes(newInputWord[i]);
+    isInSamePosition = newInputWord[i] === valueData[i];
+    checkLetter.push({ letter, isInWord, isInSamePosition });
+    }
+    return checkLetter;
+  };
+
 
   return (
     <div className="App">
@@ -28,9 +46,10 @@ function App() {
       </header>
       <div>
         <ApiWord onFetchData={handleData} />
-        <p>{newWordInput}</p>
+        {validateWord < 6 && validateWord.map((letter) => <p>{letter.letter}</p>)}
+        <p>{newInputWord}</p>
         {finalResult && <Result>Congratulations</Result>}
-        <WordInput onSubmit={handleSubmit} />
+        <WordInput onSubmit={handleSubmit} onClick={validateWord}/>
       </div>
     </div>
   );
