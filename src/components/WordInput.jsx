@@ -1,4 +1,4 @@
-import '../styles/WordInput.scss'
+import "../styles/WordInput.scss";
 import { useState } from "react";
 
 function WordInput({ onSubmit }) {
@@ -25,13 +25,15 @@ function WordInput({ onSubmit }) {
           required
           maxLength="5"
         />
-        <button onClick={handleSubmit}>Submit</button>
-        </div>
-        <div className='alerInput'>
+        <button onClick={handleSubmit} disabled={newWord.length < 5}>
+          Submit
+        </button>
+      </div>
+      <div className="alerInput">
         {newWord.length < 5 && newWord.length > 0 && (
-            <p>Text should be 5 letters</p>
+          <p>Text should be 5 letters</p>
         )}
-        </div>
+      </div>
     </>
   );
 }

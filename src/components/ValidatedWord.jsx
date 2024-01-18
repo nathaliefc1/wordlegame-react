@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
 import "../styles/ValidatedWord.scss";
 
-const ValidatedWord = ({ newWord, apiWordData }) => {
+const ValidatedWord = ({ newWord, apiWordData, onIsComplete}) => {
   const [validatedWords, setValidatedWords] = useState([]);
 
+  useEffect(() => {
+    setValidatedWords([]);
+  }, [apiWordData]);
+  
   useEffect(() => {
     if (newWord) {
       let checkArray = [];
@@ -16,12 +20,18 @@ const ValidatedWord = ({ newWord, apiWordData }) => {
         isInSamePosition = newWord[i] === apiWordData[i];
         checkArray.push({ letter, isInWord, isInSamePosition });
       }
-      console.log(checkArray);
       const arrayWords = [...validatedWords, checkArray];
-      console.log("componente arrayWords", arrayWords);
       setValidatedWords(arrayWords);
+      
+      if (newWord === apiWordData) {
+        onIsComplete('completed');
+      } else if (newWord !== apiWordData && arrayWords.length === 6) {
+        onIsComplete('failed');
+      }
+
     }
   }, [newWord]);
+
 
   return (
     <div className="container">

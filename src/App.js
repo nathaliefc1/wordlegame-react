@@ -5,9 +5,13 @@ import WordInput from "./components/WordInput";
 import "./styles/style.scss";
 import ValidatedWord from "./components/ValidatedWord";
 
+// 'complete', 'failed', undefined
+
 function App() {
   const [valueData, setValueData] = useState("");
-  const [inputWord, setInputWord] = useState('');
+  const [inputWord, setInputWord] = useState("");
+  const [gameState, setGameState] = useState(undefined);
+
 
   const handleData = (data) => {
     console.log("ApiWord ===", data);
@@ -17,6 +21,10 @@ function App() {
     setInputWord(newWord);
   }
 
+  const handleResult = (state) => {
+    setGameState(state);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -24,7 +32,8 @@ function App() {
       </header>
       <div>
         <ApiWord onFetchData={handleData} />
-        <ValidatedWord apiWordData={valueData} newWord={inputWord} />
+        <ValidatedWord apiWordData={valueData} newWord={inputWord} onIsComplete={handleResult}/>
+        <Result gameState={gameState}/>
         <WordInput onSubmit={handleInputWord} />
       </div>
     </div>
