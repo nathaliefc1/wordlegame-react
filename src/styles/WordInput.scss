@@ -1,0 +1,18 @@
+.containerInput {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+  .wordInput {
+    border: none;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 6px;
+  }
+}
+.alerInput {
+  font-size: 12px;
+  color: red;
+  text-align: center;
+}

@@ -1,0 +1,36 @@
+$primaryBtn: #dce1ed;
+$primaryBg: #fbfcff;
+$primaryLtrClr: #393e4c;
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  background-color: lightblue;
+}
+
+.App-header {
+  text-align: center;
+  min-height: 30vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(20px + 2vmin);
+  color: white;
+}
+
+button {
+  background: $primaryBtn;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+ApiWord {
+  display: inline-block;
+}

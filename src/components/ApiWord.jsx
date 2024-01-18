@@ -1,3 +1,4 @@
+import '../styles/ApiWord.scss'
 import React, { useState, useEffect, memo } from "react";
 import axios from "axios";
 
@@ -26,7 +27,7 @@ function ApiWord({onFetchData}) {
   }, []);
 
   return (
-    <div>
+    <div className="apiword">
       {loading ? <p>Cargando datos...</p> : <p>Let's play ...</p>}
       <button onClick={fetchData}>New Word</button>
     </div>

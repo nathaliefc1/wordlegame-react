@@ -1,0 +1,11 @@
+.apiword {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    p {
+        margin: 20px;
+        font-weight: bold;
+    }
+}

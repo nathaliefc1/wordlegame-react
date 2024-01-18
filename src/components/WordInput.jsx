@@ -1,3 +1,4 @@
+import '../styles/WordInput.scss'
 import { useState } from "react";
 
 function WordInput({ onSubmit }) {
@@ -9,24 +10,28 @@ function WordInput({ onSubmit }) {
 
   const handleSubmit = () => {
     onSubmit(newWord);
-    setNewWord('');
-  }
-  
+    setNewWord("");
+  };
 
   return (
     <>
-      <div>
+      <div className="containerInput">
         <input
           type="text"
+          className="wordInput"
           value={newWord}
           onChange={handleInputChange}
           placeholder="Enter a word"
           required
           maxLength="5"
         />
-        {newWord.length < 5 && newWord.length > 0 && <p>Text should be 5 letters</p>}
-      </div>
-      <button onClick={handleSubmit}>Submit</button>
+        <button onClick={handleSubmit}>Submit</button>
+        </div>
+        <div className='alerInput'>
+        {newWord.length < 5 && newWord.length > 0 && (
+            <p>Text should be 5 letters</p>
+        )}
+        </div>
     </>
   );
 }
