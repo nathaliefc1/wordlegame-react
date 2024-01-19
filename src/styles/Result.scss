@@ -1,0 +1,14 @@
+.container {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 24px;
+  font-weight: bold;
+
+  .completed {
+    color: #2ecc71;
+  }
+
+  .failed {
+    color: #e74c3c;
+  }
+}

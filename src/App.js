@@ -1,29 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ApiWord from "./components/ApiWord";
 import Result from "./components/Result";
 import WordInput from "./components/WordInput";
 import "./styles/style.scss";
 import ValidatedWord from "./components/ValidatedWord";
 
-// 'complete', 'failed', undefined
-
 function App() {
-  const [valueData, setValueData] = useState("");
-  const [inputWord, setInputWord] = useState("");
+  const [hiddenWord, setHiddenWord] = useState("");
   const [gameState, setGameState] = useState(undefined);
-
+  const [validatedWords, setValidatedWords] = useState([]);
 
   const handleData = (data) => {
-    console.log("ApiWord ===", data);
-    setValueData(data);
+    setHiddenWord(data);
   };
-  const handleInputWord = (newWord) => {
-    setInputWord(newWord);
-  }
 
   const handleResult = (state) => {
     setGameState(state);
-  }
+  };
+
+  const handleValidatedWord = (newWord) => {
+    setValidatedWords([...validatedWords, newWord]);
+  };
+
+  useEffect(() => {
+    setValidatedWords([]);
+    setGameState(undefined);
+  }, [hiddenWord]);
 
   return (
     <div className="App">
@@ -32,9 +34,15 @@ function App() {
       </header>
       <div>
         <ApiWord onFetchData={handleData} />
-        <ValidatedWord apiWordData={valueData} newWord={inputWord} onIsComplete={handleResult}/>
-        <Result gameState={gameState}/>
-        <WordInput onSubmit={handleInputWord} />
+        <ValidatedWord validatedWords={validatedWords} />
+        <Result gameState={gameState} />
+        <WordInput
+          inputDisabled={!!gameState}
+          onValidateWord={handleValidatedWord}
+          onIsComplete={handleResult}
+          hiddenWord={hiddenWord}
+          validatedWords={validatedWords}
+        />
       </div>
     </div>
   );
