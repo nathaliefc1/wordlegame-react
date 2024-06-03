@@ -6,10 +6,11 @@ const apiRandomWord = "https://random-word-api.herokuapp.com/word?length=";
 const length = "5";
 
 function ApiWord({ onFetchData }) {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const fetchData = async () => {
     try {
+      setLoading(true)
       const response = await axios.get(apiRandomWord + length);
       onFetchData(response.data[0]);
     } catch (error) {

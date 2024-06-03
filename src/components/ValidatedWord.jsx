@@ -3,22 +3,22 @@ import "../styles/ValidatedWord.scss";
 const ValidatedWord = ({ validatedWords }) => {
   return (
     <div className="container">
-      {validatedWords.map((Arrays, index) => (
+      {validatedWords.map((word, index) => (
         <div key={index} className="line-box">
-          {Arrays.map((wordArray, insideIndex) => (
+          {word.map((letter, insideIndex) => (
             <p
               key={insideIndex}
               className={`box-letters ${
-                wordArray.isInSamePosition && wordArray.isInWord
+                letter.isInSamePosition && letter.isInWord
                   ? "box-letters--is-position"
                   : ""
               } ${
-                wordArray.isInWord && !wordArray.isInSamePosition
+                letter.isInWord && !letter.isInSamePosition
                   ? "box-letters--is-in-word"
                   : ""
               }`}
             >
-              {wordArray.letter}
+              {letter.letter}
             </p>
           ))}
         </div>
